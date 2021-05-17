@@ -17,7 +17,7 @@ export default function DisplayPage(props) {
       })
       const data = await res.json();
       setCryptoData(data)
-      console.log(data)
+      console.log(JSON.stringify(data, null, 4));
     } catch (error) {
       console.log(error);
     }
@@ -26,9 +26,50 @@ export default function DisplayPage(props) {
     DisplayCryptoData();
   }, []);
 
+
+  if (cryptoData === undefined) {
+    return <h1>loading ...</h1>
+  } else if (cryptoData.description === undefined) {
+    return <h1>loading ...</h1>
+  } else if (cryptoData.description.en === undefined) {
+    return <h1>loading ...</h1>
+  } 
+
+
+
+  const remover = /(<([^>]+)>)/ig;
+
     return (
         <div>
-            {cryptoData.name}
+            <div>
+                {cryptoData.name}
+            </div>
+            <div>
+                {cryptoData.description.en.replace(remover, '')}
+
+                {/* {description.map((data) => {
+                    console.log(data)
+                })} */}
+                
+                {/* {description.map((crypto) => {
+                    console.log(crypto)
+                    return crypto.map((des) => {
+                        console.log(des)
+                        return (
+                          <div>1</div>
+                        )
+                      })
+                })} */}
+
+                {/* {description.map((crypto) => {
+                    console.log(JSON.stringify(crypto, null, 4));
+                    return (
+                        <div>1</div>
+                    )})} */}
+
+
+
+            </div>
         </div>
     )
 }

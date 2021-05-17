@@ -35,7 +35,7 @@ export default function HomePage() {
           console.log(crypto)
           return (
             <div key={uuidv4()}>
-                <Link to={`${crypto.name.toLowerCase()}`}>
+                <Link to={`crypto/${crypto.id.toLowerCase()}`}>
                     <h2>{crypto.name}</h2>
                 </Link>
             </div>
