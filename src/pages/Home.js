@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
-// import styles from './'
+import styles from './Home.module.css'
 
 export default function HomePage() {
 
@@ -31,19 +31,22 @@ export default function HomePage() {
 
   return (
     <div>
-        <h1>Hello World</h1>
+        <div className={styles.header_description}>
+          <h2>Welcome To CryptoTalk</h2>
+          <h3>Up to date information and stats on your favorite crypto currencies.</h3>
+        </div>
         {homeCryptoData.map((crypto) => {
           // console.log(crypto)
           return (
-            <div key={uuidv4()}>
+            <div className={styles.homepage_container} key={uuidv4()}>
                 <Link to={`crypto/${crypto.id.toLowerCase()}`}>
-                  <div >
-                    <h2>{crypto.name}</h2>
-                    <h4>${crypto.current_price}</h4>
-                    <h4>Market Cap Rank: {crypto.market_cap_rank}</h4>
-                    <h4>Cap Rank: {crypto.market_cap_rank}</h4>
-                    <h4>24hr High/Low: ${crypto.high_24h}/ ${crypto.low_24h}</h4>
-                    <h4>24hr: {crypto.market_cap_change_percentage_24h}%</h4>
+                  <div className={styles.main_data_container}>
+                    <div className={styles.first_container}>
+                      <h2 className={styles.individual_stats}>{crypto.name}</h2>
+                      <h4 className={styles.individual_stats}>Price: ${crypto.current_price}</h4>
+                      <h4 className={styles.individual_stats}>24hr high/low: ${crypto.high_24h}/${crypto.low_24h}</h4>
+                      <h4 className={styles.individual_stats}>24hr: {crypto.market_cap_change_percentage_24h}%</h4>
+                    </div>
                   </div>
                 </Link>
             </div>

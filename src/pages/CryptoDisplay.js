@@ -1,6 +1,7 @@
 import {useEffect, useState } from 'react';
 // import {Chart} from 'chart.js';
-import {Line} from 'react-chartjs-2';
+import {Line, Bar} from 'react-chartjs-2';
+import styles from './CryptoDisplay.module.css';
 
 export default function DisplayPage(props) {
 
@@ -104,7 +105,7 @@ export default function DisplayPage(props) {
         console.error(error);
       }
     }
-  
+    console.log(savedCryptoData)
   
   
     const fetchCrypto = async () => {
@@ -131,11 +132,17 @@ export default function DisplayPage(props) {
     }, [savedCryptoData])
 
 
-  const handleChange = (e) => {
-    setSavePage({ ...savePage, [e.target.id]: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setSavePage({ ...savePage, [e.target.id]: e.target.value });
+  // };
 
-  console.log(savePage)
+  // console.log(savePage)
+
+
+
+
+
+
 
 
 
@@ -221,24 +228,12 @@ export default function DisplayPage(props) {
 
   const labels = [
     'Day 7',
-    "",
-    "",
     'Day 6',
-    "",
-    "",
     'Day 5',
-    "",
-    "",
     'Day 4',
-    "",
-    "",
     'Day 3',
-    "",
-    "",
     'Day 2',
-    "",
-    "",
-    'Current',
+    'Current'
   ];
 
   const dataSet = {
@@ -247,7 +242,7 @@ export default function DisplayPage(props) {
       label: `${cryptoData.name} Price`,
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45, 60],
+      data: [43, 10, 6, 13, 20, 30, 45],
     //   data: `${mapChartPricing}`,
     }]
   };
@@ -258,14 +253,14 @@ export default function DisplayPage(props) {
 
     return (
         <div>
-            <div>
+            <div className={styles.name_display}>
                 <h1>{cryptoData.name}</h1>
-                <button onClick={checkFavoritedApi}>Like</button>
+               
                 <img src={cryptoData.image.small} alt="crypto coin symbol"></img>
-                <h2>{cryptoData.symbol.toUpperCase()}</h2>
+                <button className={styles.favorite_button} onClick={checkFavoritedApi}>Favorite</button>
             </div>
-            <div>
-                <Line
+            <div className={styles.chart}>
+                <Bar
                     data={dataSet}
                     options={{
                         title:{
@@ -279,31 +274,39 @@ export default function DisplayPage(props) {
                     }}
                 />
             </div>
-            <div>
-                <h5><a href={cryptoData.links.homepage}>{cryptoData.links.homepage}</a></h5>
-                <h5><a href={cryptoData.links.official_forum_url}>{cryptoData.links.official_forum_url}</a></h5>
-            </div>
-            <div>
-                <h3>Current price: ${cryptoData.market_data.current_price.usd}</h3>
-                <h3>Market Cap rank: {cryptoData.market_cap_rank}</h3>
-                <h3>Market Cap: ${cryptoData.market_data.market_cap.usd}</h3>
-                <h3>All time high: ${cryptoData.market_data.ath.usd}</h3>
-                <h3>Total volume: ${cryptoData.market_data.total_volume.usd}</h3>
-                <h3>24h high: ${cryptoData.market_data.high_24h.usd}</h3>
-                <h3>24h low: ${cryptoData.market_data.low_24h.usd}</h3>
-                <h3>24h price change: ${cryptoData.market_data.price_change_24h_in_currency.usd}</h3>
-                <h3>24h percent change: {cryptoData.market_data.price_change_percentage_24h}%</h3>
-                <h3>7 day percent change: {cryptoData.market_data.price_change_percentage_7d}%</h3>
-                <h3>14 day percent change: {cryptoData.market_data.price_change_percentage_14d}%</h3>
-                <h3>30 day percent change: {cryptoData.market_data.price_change_percentage_30d}%</h3>
-                <h3>1 year percent change: {cryptoData.market_data.price_change_percentage_1y}%</h3>
-                <h3>Circulating Supply: {cryptoData.market_data.circulating_supply} coins</h3>
-            </div>
-            <div>
-                <p>
-                    {cryptoData.description.en.replace(regex, '')}
-                </p>
-            </div>
+              <div  className={styles.left_right}>
+                <div>
+                  <div className={styles.description}>
+                    <h3>What is {cryptoData.name}?</h3>
+                      <p>
+                          {cryptoData.description.en.replace(regex, '')}
+                      </p>
+                      <h4>External Links:</h4>
+                      <div className={styles.site_links}>
+                        <a href={cryptoData.links.homepage}><h4>{cryptoData.links.homepage}</h4></a>
+                        <a href={cryptoData.links.homepage}><h4>{cryptoData.links.official_forum_url}</h4></a>
+                      </div>
+                  </div>
+    
+                </div>
+                <div className={styles.data_container}>
+                    <h2>{cryptoData.symbol.toUpperCase()} Price Stats</h2>
+                    <h3>Current price: ${cryptoData.market_data.current_price.usd}</h3>
+                    <h3>Market Cap rank: {cryptoData.market_cap_rank}</h3>
+                    <h3>Market Cap: ${cryptoData.market_data.market_cap.usd}</h3>
+                    <h3>All time high: ${cryptoData.market_data.ath.usd}</h3>
+                    <h3>Total volume: ${cryptoData.market_data.total_volume.usd}</h3>
+                    <h3>24h high: ${cryptoData.market_data.high_24h.usd}</h3>
+                    <h3>24h low: ${cryptoData.market_data.low_24h.usd}</h3>
+                    <h3>24h price change: ${cryptoData.market_data.price_change_24h_in_currency.usd}</h3>
+                    <h3>24h percent change: {cryptoData.market_data.price_change_percentage_24h}%</h3>
+                    <h3>7 day percent change: {cryptoData.market_data.price_change_percentage_7d}%</h3>
+                    <h3>14 day percent change: {cryptoData.market_data.price_change_percentage_14d}%</h3>
+                    <h3>30 day percent change: {cryptoData.market_data.price_change_percentage_30d}%</h3>
+                    <h3>1 year percent change: {cryptoData.market_data.price_change_percentage_1y}%</h3>
+                    <h3>Circulating Supply: {cryptoData.market_data.circulating_supply} coins</h3>
+                </div>
+              </div>
         </div>
     )
 }

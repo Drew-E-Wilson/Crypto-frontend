@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useContext} from 'react';
 import { BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom';
 import HomePage from './pages/Home';
 import CryptoDisplay from './pages/CryptoDisplay';
@@ -9,27 +9,34 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import './App.css';
 
-export const DataContext = React.createContext()
+export const Datacontext = React.createContext()
 
 
 function App() {
 
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
   return (
-    <DataContext.Provider>
+    <Datacontext.Provider value={{isLoggedIn, setLoggedIn}}>
       <Router>
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/profile">Profile</Link>
-          {/* <Link to="/news">News</Link> */}
-          {/* <Link to="/settings">Settings</Link> */}
-          <Link to="login">Login</Link>
+          <div>
+            <h1 className="sitename">CryptoTalk</h1>
+          </div>
+          <div>
+            <Link to="/" className="links">Home</Link>
+            <Link to="/profile" className="links">Profile</Link>
+            {/* <Link to="/news">News</Link> */}
+            {/* <Link to="/settings">Settings</Link> */}
+            <Link to="login" className="links">Login</Link>
+          </div>
         </nav>
         <main>
           <Switch>
             <div>
               <Route path="/" exact component={HomePage} />
               <Route path="/crypto/:CryptoId" component={CryptoDisplay} />
-              <Route path="/profile" exact component={Profile} Login={Login}/>
+              <Route path="/profile" exact component={Profile}/>
               <Route path="/news" exact component={News}/>
               <Route path="/settings" exact component={Settings}/>
               <Route path="/login" exact component={Login}/>
@@ -38,7 +45,7 @@ function App() {
           </Switch>
         </main>
       </Router>
-    </DataContext.Provider>
+    </Datacontext.Provider>
   );
 }
 

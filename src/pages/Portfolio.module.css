@@ -1,0 +1,13 @@
+.portfolio_holder {
+    margin: 20px;
+}
+
+.crypto_name {
+    color: black;
+    background-color: rgb(146, 225, 188);
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 5px;
+}
