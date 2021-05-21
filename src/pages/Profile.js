@@ -1,5 +1,4 @@
 import React, {useEffect, useState, useRef, useContext} from 'react';
-// import {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {Datacontext} from "../App"
 import styles from './Portfolio.module.css'
@@ -9,7 +8,6 @@ export default function Profile(props) {
 
     
     const history = useHistory();
-    // console.log(localStorage.username)
     const {isLoggedIn, setLoggedIn} = useContext(Datacontext)
     const [myCryptoData, setmyCryptoData] = useState({favoritedPage: []});
     console.log(myCryptoData)
