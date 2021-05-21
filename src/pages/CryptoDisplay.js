@@ -107,7 +107,7 @@ export default function DisplayPage(props) {
     const checkFavoritedApi = async (e) => {
       e.preventDefault()
       try {
-        const response = await fetch(`http://localhost:8000/users/favoritedPages`);
+        const response = await fetch(`https://capstoneback.herokuapp.com/users/favoritedPages`);
         const data = await response.json();
         
         console.log(data);
@@ -125,7 +125,7 @@ export default function DisplayPage(props) {
   
       try {
         const response = await fetch(
-          `http://localhost:8000/favoritedPages/`,
+          `https://capstoneback.herokuapp.com/favoritedPages/`,
           {
           method: "POST",
           headers: {
@@ -153,7 +153,7 @@ export default function DisplayPage(props) {
     const getFavortiedIdFromFavoriteApi = async (e) => {
       e.preventDefault()
       try {
-        const response = await fetch(`http://localhost:8000/favoritedPages/`, {
+        const response = await fetch(`https://capstoneback.herokuapp.com/favoritedPages/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -175,7 +175,7 @@ export default function DisplayPage(props) {
   
       try {
         const response = await fetch(
-          `http://localhost:8000/users/addFavoritedPage/${savedCryptoData}/${window.localStorage.getItem("username")}`,
+          `https://capstoneback.herokuapp.com/users/addFavoritedPage/${savedCryptoData}/${window.localStorage.getItem("username")}`,
           {
           method: "POST",
           headers: {

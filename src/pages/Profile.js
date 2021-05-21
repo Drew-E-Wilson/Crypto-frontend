@@ -15,7 +15,7 @@ export default function Profile(props) {
     console.log(myCryptoData)
     const DisplayFavoritedData = async () => {
         try { 
-          const res = await fetch(`http://localhost:8000/users/${window.localStorage.getItem("username")}`)
+          const res = await fetch(`https://capstoneback.herokuapp.com/users/${window.localStorage.getItem("username")}`)
           const data = await res.json();
           setmyCryptoData(data)
           console.log(JSON.stringify(data.favoritedPage, null, 4));
@@ -31,7 +31,7 @@ export default function Profile(props) {
 
     const DeleteUser = async () => {
         try { 
-          const res = await fetch(`http://localhost:8000/users/${myCryptoData._id}` , {
+          const res = await fetch(`https://capstoneback.herokuapp.com/users/${myCryptoData._id}` , {
                   method: "DELETE",
                   headers: {
                     "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export default function Profile(props) {
 // //delete favoritedPage from profile
 // const deleteFavorited = async (_id, name) => {
 //   try {
-//     const response = await fetch(`http://localhost:8000/users/${window.localStorage.getItem("username")}/favoritedPage/${findRemovedItem.name}/${findRemovedItem._id}`, {
+//     const response = await fetch(`https://capstoneback.herokuapp.com/users/${window.localStorage.getItem("username")}/favoritedPage/${findRemovedItem.name}/${findRemovedItem._id}`, {
 //       method: "DELETE",
 //       headers: {
 //         "Content-Type": "application/json",

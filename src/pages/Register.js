@@ -16,7 +16,7 @@ export default function Register({ createModal, setCreateModal }){
         e.preventDefault();
         const body = { ...createForm };
         try {
-            const response = await fetch('http://localhost:8000/register', {
+            const response = await fetch('https://capstoneback.herokuapp.com/register', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -125,7 +125,7 @@ export default function Register({ createModal, setCreateModal }){
 //         e.preventDefault();
 //         try {
 //             const response = await fetch(
-//                 `https://localhost:8000`
+//                 `https://capstoneback.herokuapp.com/`
 //                 ,
 //                 {
 //                 method: "POST",
