@@ -8,7 +8,7 @@ export default function DisplayPage(props) {
     const [cryptoChartData, setCryptoChartData] = useState({prices: [[]]});
     const [savePage, setSavePage] = useState({
       name: `${props.match.params.CryptoId}`,
-      url: `http://localhost:3000/crypto/${props.match.params.CryptoId}`,
+      url: `https://drew-e-wilson.github.io/crypto/${props.match.params.CryptoId}`,
     });
     const [savedCryptoData, setSavedCryptoData] = useState("")
     const [getTime, setGetTime] = useState([])
@@ -98,7 +98,7 @@ export default function DisplayPage(props) {
       }
     )
 
-    const url = `http://localhost:3000/crypto/${props.match.params.CryptoId}`;
+    const url = `https://drew-e-wilson.github.io/crypto/${props.match.params.CryptoId}`;
   
     const checkFavoritedApi = async (e) => {
       e.preventDefault()
@@ -295,20 +295,22 @@ export default function DisplayPage(props) {
                 <img src={cryptoData.image.small} alt="crypto coin symbol"></img>
                 <button className={styles.favorite_button} onClick={checkFavoritedApi}>Favorite</button>
             </div>
-            <div className={styles.chart}>
-                <Bar
-                    data={dataSet}
-                    options={{
-                        title:{
-                        display:true,
-                        fontSize:20
-                        },
-                        legend:{
-                        display:true,
-                        position:'right'
-                        }
-                    }}
-                />
+            <div className={styles.chart_holder}>
+              <div className={styles.chart}>
+                  <Bar
+                      data={dataSet}
+                      options={{
+                          title:{
+                          display:true,
+                          fontSize:20
+                          },
+                          legend:{
+                          display:true,
+                          position:'right'
+                          }
+                      }}
+                  />
+              </div>
             </div>
               <div  className={styles.left_right}>
                 <div>

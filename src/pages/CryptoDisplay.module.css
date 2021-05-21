@@ -38,3 +38,13 @@
     justify-content: space-around;
     margin-top: 30px;
 }
+
+.chart {
+    width: 800px;
+    height: auto;
+}
+
+.chart_holder {
+    display: flex;
+    justify-content: center;
+}
