@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef, useContext} from 'react';
 import {useHistory} from 'react-router-dom';
 import {Datacontext} from "../App"
-import styles from './Portfolio.module.css'
+import styles from './Profile.module.css'
 
 
 export default function Profile(props) {
@@ -59,7 +59,7 @@ export default function Profile(props) {
 
     return (
         // <div></div>
-        <div className={styles.portfolio_holder}>
+        <div className={styles.profile_holder}>
             <h1>Welcome {localStorage.username}</h1>
             {isLoggedIn ? <button onClick={handleLogout}>Log Out</button>: ""}
             <h3>You Favorite Crypto:</h3>
