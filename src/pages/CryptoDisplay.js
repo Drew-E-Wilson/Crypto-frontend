@@ -102,7 +102,7 @@ export default function DisplayPage(props) {
 
 
 
-    const url = `http://localhost:3000/crypto/${props.match.params.CryptoId}`;
+    const url = `https://cryptotalk.netlify.app/crypto/${props.match.params.CryptoId}`;
   
     const checkFavoritedApi = async (e) => {
       e.preventDefault()
