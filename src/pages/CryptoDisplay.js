@@ -9,7 +9,7 @@ export default function DisplayPage(props) {
     const [cryptoChartData, setCryptoChartData] = useState({prices: [[]]});
     const [savePage, setSavePage] = useState({
       name: `${props.match.params.CryptoId}`,
-      url: `https://drew-e-wilson.github.io/Crypto-frontend/crypto/${props.match.params.CryptoId}`,
+      url: `https://drew-e-wilson.github.io/crypto/${props.match.params.CryptoId}`,
     });
     const [savedCryptoData, setSavedCryptoData] = useState("")
     const [getTime, setGetTime] = useState([])
@@ -102,7 +102,7 @@ export default function DisplayPage(props) {
 
 
 
-    const url = `https://drew-e-wilson.github.io/Crypto-frontend/crypto/${props.match.params.CryptoId}`;
+    const url = `https://drew-e-wilson.github.io/crypto/${props.match.params.CryptoId}`;
   
     const checkFavoritedApi = async (e) => {
       e.preventDefault()
@@ -239,20 +239,6 @@ export default function DisplayPage(props) {
       useEffect(() => {
         ChartCryptoData();
       },[]);
-    
-
-      // const chartPricing = cryptoChartData.prices
-    // console.log(JSON.stringify(chartPricing, null, 4));
-    
-
-    // const mapChartPricing = chartPricing.map((data) => {
-    //     // console.log(JSON.stringify(data[1], null, 4));
-    //     for ( let i = 0; i < data.length; i += 9) {
-    //         return data[1]
-    //         }
-    // })
-    // console.log(mapChartPricing)
-
 
 
     // Bulk data for Page
@@ -275,11 +261,6 @@ export default function DisplayPage(props) {
   useEffect(() => {
     DisplayCryptoData();
   },[]);
-
-
-
-  
-
 
  
   const callChartApi = async (theDay) => {
@@ -314,15 +295,6 @@ export default function DisplayPage(props) {
       }
       console.log(getTime)
     }
-
-  
-
-  // let datePrices = []
-  // const day1price = getTime.market_data.current_price.usd
-  // console.log(day1price)
-  // datePrices.push(day1price)
-  // console.log(datePrices)
-
  
   useEffect(() => {
     getChartDates();
@@ -331,21 +303,6 @@ export default function DisplayPage(props) {
   useEffect(() => {
     console.log(getTime)
   }, [getTime])
-
-
-
-  // const dataSet = {
-  //   labels: labels,
-  //   datasets: [{
-  //     label: `${cryptoData.name} 7 day Price Recap`,
-  //     backgroundColor: 'rgb(255, 99, 132)',
-  //     borderColor: 'rgb(255, 99, 132)',
-  //     data: [getTime[0], getTime[1], getTime[2], getTime[3], getTime[4], getTime[5], getTime[6]]
-  //   }]
-  // };
-
-
-
 
 
   if (cryptoData === undefined) {

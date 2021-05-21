@@ -2,7 +2,7 @@ import {useState} from 'react';
 import { useHistory } from 'react-router-dom'
 
 
-export default function Register({ createModal, setCreateModal }){
+export default function Register(){
     const history = useHistory()
     const [createForm, setCreateForm] = useState({
         username: "",
@@ -91,105 +91,3 @@ export default function Register({ createModal, setCreateModal }){
           </div>
       )
 }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export default function Register() {
-//     const [newInfo, setNewInfo] = useState({
-//         firstname: "Empty",
-//         lastname: "Empty",
-//         genderpronouns: "Empty",
-//         location: "Empty",
-//         aboutme: "Empty",
-//         linkedin: "Empty"
-//       });
-//     const handleSubmit = async (e) => {   
-//         // console.log(pkKey) 
-//         e.preventDefault();
-//         try {
-//             const response = await fetch(
-//                 `https://capstoneback.herokuapp.com/`
-//                 ,
-//                 {
-//                 method: "POST",
-//                 headers: {
-//                     "Content-Type": "application/json"
-//                 },
-//                 body: JSON.stringify(newInfo)
-//                 }
-//             );
-//             const data = await response.json();
-//             console.log(newInfo)
-//             //   setTodos([...todos, data]);
-//             setNewInfo({
-//                 username: "",
-//                 firstname: "",
-//                 email: "",
-//                 password: ""
-//             });
-//         } catch (error) {
-//             console.error(error);
-//         }
-//     }
-//     const handleChange = (e) => {
-//         setNewInfo({ ...newInfo, [e.target.name]: e.target.value });
-
-//         console.log(newInfo)
-//       };
-
-//     return (
-//         <div >
-//             <h1 >Create New User</h1>
-//             <form  onSubmit={handleSubmit}>
-//                 <label>
-//                     Username:{""}
-//                     <input
-//                     type="text"
-//                     name="firstname"
-//                     value={newInfo.firstname}
-//                     onChange={handleChange}
-//                     />
-//                      First name:{""}
-//                     <input
-//                     type="text"
-//                     name="firstname"
-//                     value={newInfo.firstname}
-//                     onChange={handleChange}
-//                     />
-//                     Email:{""}
-//                     <input
-//                     type="text"
-//                     name="firstname"
-//                     value={newInfo.firstname}
-//                     onChange={handleChange}
-//                     />
-//                     Password:{""}
-//                     <input
-//                     type="text"
-//                     name="firstname"
-//                     value={newInfo.firstname}
-//                     onChange={handleChange}
-//                     />
-//                 </label><br /><br />
-//                 <input />
-//              </form>
-//          </div>
-//     )
-// }
