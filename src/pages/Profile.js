@@ -63,7 +63,7 @@ export default function Profile(props) {
         // <div></div>
         <div className={styles.portfolio_holder}>
             <h1>Welcome {localStorage.username}</h1>
-            <button onClick={handleLogout}>Log Out</button>
+            {isLoggedIn ? <button onClick={handleLogout}>Log Out</button>: ""}
             <h3>You Favorite Crypto:</h3>
             {myCryptoData ? myCryptoData.favoritedPage.map((data) => {
                 console.log(data)
@@ -71,7 +71,7 @@ export default function Profile(props) {
                     <a href={data.url}><h2 className={styles.crypto_name}>{data.name}</h2></a>
                 )
             }): "You're not logged in"}
-            <button onClick={DeleteUser}>Delete Account</button>
+            {isLoggedIn ? <button onClick={DeleteUser}>Delete Account</button>: ""}
         </div>
     )
 }

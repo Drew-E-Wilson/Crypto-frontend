@@ -6,14 +6,100 @@ import styles from './CryptoDisplay.module.css';
 export default function DisplayPage(props) {
 
     const [cryptoData, setCryptoData] = useState([]);
-    const [cryptoChartData, setCryptoChartData] = useState({prices: [[]] });
+    const [cryptoChartData, setCryptoChartData] = useState({prices: [[]]});
     const [savePage, setSavePage] = useState({
       name: `${props.match.params.CryptoId}`,
       url: `http://localhost:3000/crypto/${props.match.params.CryptoId}`,
     });
     const [savedCryptoData, setSavedCryptoData] = useState("")
-    const savedId = props.match.params.id;
+    const [getTime, setGetTime] = useState([])
   
+
+    const getDate1 = () => {
+      let today = new Date()
+      let day1 = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()
+      return {
+        currentDate: day1
+      }
+    }
+    const getDate2 = () => {
+      let today = new Date()
+      let day2 = (today.getDate() -1) + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()
+      return {
+        currentDate: day2
+      }
+    }
+    const getDate3 = () => {
+      let today = new Date()
+      let day3 = (today.getDate() -2) + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()
+      return {
+        currentDate: day3
+      }
+    }
+    const getDate4 = () => {
+      let today = new Date()
+      let day4 = (today.getDate() -3) + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()
+      return {
+        currentDate: day4
+      }
+    }
+    const getDate5 = () => {
+      let today = new Date()
+      let day5 = (today.getDate() -4) + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()
+      return {
+        currentDate: day5
+      }
+    }
+    const getDate6 = () => {
+      let today = new Date()
+      let day6 = (today.getDate() -5) + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()
+      return {
+        currentDate: day6
+      }
+    }
+    const getDate7 = () => {
+      let today = new Date()
+      let day7 = (today.getDate() -6) + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()
+      return {
+        currentDate: day7
+      }
+    }
+  
+    const day1 = getDate1().currentDate
+    const day2 = getDate2().currentDate
+    const day3 = getDate3().currentDate
+    const day4 = getDate4().currentDate
+    const day5 = getDate5().currentDate
+    const day6 = getDate6().currentDate
+    const day7 = getDate7().currentDate
+  
+    const sevenDays = [day1, day2, day3, day4, day5, day6, day7]
+    console.log(sevenDays)
+    const getThatDates = []
+  
+
+    const labels = [
+      `${day7}`,
+      `${day6}`,
+      `${day5}`,
+      `${day4}`,
+      `${day3}`,
+      `${day2}`,
+      `${day1}`
+    ];
+
+    const [dataSet, setDataSet] = useState(
+      {
+        labels: labels,
+        datasets: [{
+          label: `${cryptoData.name} 7 day Price Recap`,
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: []
+        }]
+      }
+    )
+
 
 
     const url = `http://localhost:3000/crypto/${props.match.params.CryptoId}`;
@@ -113,40 +199,22 @@ export default function DisplayPage(props) {
         const response = await fetch(url);
         const data = await response.json();
         setSavePage(data);
-        console.log('Fetched');
       } catch (error) {
         console.log(error);
       }
-    };
+    }
   
-    // const normalText = /(<([^>]+)>)/ig;
   
     useEffect(() => {
       fetchCrypto();
     }, [props]);
+
 
     useEffect(() => {
       if(savedCryptoData.split("").length > 0){
         addFavoritedToUser()
       }
     }, [savedCryptoData])
-
-
-  // const handleChange = (e) => {
-  //   setSavePage({ ...savePage, [e.target.id]: e.target.value });
-  // };
-
-  // console.log(savePage)
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -173,16 +241,16 @@ export default function DisplayPage(props) {
       },[]);
     
 
-      const chartPricing = cryptoChartData.prices
+      // const chartPricing = cryptoChartData.prices
     // console.log(JSON.stringify(chartPricing, null, 4));
     
 
-    const mapChartPricing = chartPricing.map((data) => {
-        // console.log(JSON.stringify(data[1], null, 4));
-        for ( let i = 0; i < data.length; i += 9) {
-            return data[1]
-            }
-    })
+    // const mapChartPricing = chartPricing.map((data) => {
+    //     // console.log(JSON.stringify(data[1], null, 4));
+    //     for ( let i = 0; i < data.length; i += 9) {
+    //         return data[1]
+    //         }
+    // })
     // console.log(mapChartPricing)
 
 
@@ -199,7 +267,7 @@ export default function DisplayPage(props) {
       })
       const data = await res.json();
       setCryptoData(data)
-      console.log(JSON.stringify(data, null, 4));
+      // console.log(JSON.stringify(data, null, 4));
     } catch (error) {
       console.log(error);
     }
@@ -209,11 +277,75 @@ export default function DisplayPage(props) {
   },[]);
 
 
-//   if (chartPricing === undefined) {
-//     return <h1>loading ...</h1>
-//   } else if (mapChartPricing === undefined) {
-//     return <h1>loading ...</h1>
-//   }
+
+  
+
+
+ 
+  const callChartApi = async (theDay) => {
+    try {
+      const res = await fetch(`https://coingecko.p.rapidapi.com/coins/${props.match.params.CryptoId}/history?date=${theDay}]&localization=false`, {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-key": `${process.env.REACT_APP_API_KEY}`,
+          "x-rapidapi-host": "coingecko.p.rapidapi.com"
+        }
+      })
+      const data = await res.json();
+      getThatDates.push(data.market_data.current_price.usd)
+      setDataSet({
+        labels: labels,
+        datasets: [{
+          label: `${cryptoData.name} 7 day Price Recap`,
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: getThatDates
+        }]
+      })
+      // console.log(JSON.stringify(data, null, 4));
+      // console.log(getTime)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  function getChartDates() {
+      for ( let i = 0; i < sevenDays.length; i++) {
+        callChartApi(sevenDays[i])
+      }
+      console.log(getTime)
+    }
+
+  
+
+  // let datePrices = []
+  // const day1price = getTime.market_data.current_price.usd
+  // console.log(day1price)
+  // datePrices.push(day1price)
+  // console.log(datePrices)
+
+ 
+  useEffect(() => {
+    getChartDates();
+  },[]);
+
+  useEffect(() => {
+    console.log(getTime)
+  }, [getTime])
+
+
+
+  // const dataSet = {
+  //   labels: labels,
+  //   datasets: [{
+  //     label: `${cryptoData.name} 7 day Price Recap`,
+  //     backgroundColor: 'rgb(255, 99, 132)',
+  //     borderColor: 'rgb(255, 99, 132)',
+  //     data: [getTime[0], getTime[1], getTime[2], getTime[3], getTime[4], getTime[5], getTime[6]]
+  //   }]
+  // };
+
+
+
 
 
   if (cryptoData === undefined) {
@@ -223,31 +355,6 @@ export default function DisplayPage(props) {
   } else if (cryptoData.description.en === undefined) {
     return <h1>loading ...</h1>
   }  
-
-
-
-  const labels = [
-    'Day 7',
-    'Day 6',
-    'Day 5',
-    'Day 4',
-    'Day 3',
-    'Day 2',
-    'Current'
-  ];
-
-  const dataSet = {
-    labels: labels,
-    datasets: [{
-      label: `${cryptoData.name} Price`,
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: [43, 10, 6, 13, 20, 30, 45],
-    //   data: `${mapChartPricing}`,
-    }]
-  };
-
-
 
   const regex = /(<([^>]+)>)/ig;
 
@@ -291,6 +398,7 @@ export default function DisplayPage(props) {
                 </div>
                 <div className={styles.data_container}>
                     <h2>{cryptoData.symbol.toUpperCase()} Price Stats</h2>
+                    <h2>{getDate1().currentDate}</h2>
                     <h3>Current price: ${cryptoData.market_data.current_price.usd}</h3>
                     <h3>Market Cap rank: {cryptoData.market_cap_rank}</h3>
                     <h3>Market Cap: ${cryptoData.market_data.market_cap.usd}</h3>
