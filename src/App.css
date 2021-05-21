@@ -1,6 +1,7 @@
 body {
   box-sizing: border-box;
   background-color: rgb(247, 255, 233);
+  font-family: 'Roboto Mono', monospace;
 }
 
 .App {

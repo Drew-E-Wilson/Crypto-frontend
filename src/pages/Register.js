@@ -1,5 +1,6 @@
 import {useState} from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import styles from './Register.module.css';
 
 
 export default function Register(){
@@ -32,7 +33,7 @@ export default function Register(){
             email: "",
             password: ""
         })
-        // setCreateModal(false)
+        
         history.push('/login')
     }
 
@@ -44,14 +45,16 @@ export default function Register(){
       }
 
       return (
-          <div>
-              <form onSubmit={createUser}>
+          <div className={styles.register_page}>
+              <h1 className={styles.register_name}>Register User</h1>
+              <form onSubmit={createUser} className={styles.form_holder}>
                 <label>
                 {" "}
                 Username:{" "}
                 <input
                     type="text"
                     id="username"
+                    className={styles.input_box}
                     value={createForm.username}
                     onChange={createChange}
                 />
@@ -62,6 +65,7 @@ export default function Register(){
                         <input
                             type="text"
                             id="firstname"
+                            className={styles.input_box}
                             value={createForm.firstname}
                             onChange={createChange}
                         />
@@ -72,6 +76,7 @@ export default function Register(){
                         <input
                             type="text"
                             id="email"
+                            className={styles.input_box}
                             value={createForm.email}
                             onChange={createChange}
                         />
@@ -82,6 +87,7 @@ export default function Register(){
                         <input
                             type="password"
                             id="password"
+                            className={styles.input_box}
                             value={createForm.password}
                             onChange={createChange}
                         />

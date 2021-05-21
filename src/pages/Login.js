@@ -7,15 +7,7 @@ import styles from './Login.module.css'
 
 
 export default function Login(props) {
-    // const [fruits, setFruits] = useState([]);
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     color: "",
-//     isReadyToEat: false
-//   });
-//   const checkbox = useRef(null);
 
-  /* Authentication */
   const {isLoggedIn, setLoggedIn} = useContext(Datacontext)
   const [loginForm, setLoginForm] = useState({
     username: "",

@@ -37,8 +37,8 @@ function App() {
               <Route path="/" exact component={HomePage} />
               <Route path="/crypto/:CryptoId" component={CryptoDisplay} />
               <Route path="/profile" exact component={Profile}/>
-              <Route path="/news" exact component={News}/>
-              <Route path="/settings" exact component={Settings}/>
+              {/* <Route path="/news" exact component={News}/>
+              <Route path="/settings" exact component={Settings}/> */}
               <Route path="/login" exact component={Login}/>
               <Route path="/register" exact component={Register}/>
             </div>

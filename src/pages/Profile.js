@@ -9,14 +9,17 @@ export default function Profile(props) {
     
     const history = useHistory();
     const {isLoggedIn, setLoggedIn} = useContext(Datacontext)
+    const [editInfo, setEditInfo] = useState(false)
     const [myCryptoData, setmyCryptoData] = useState({favoritedPage: []});
-    console.log(myCryptoData)
+    const [userData, setUserData] = useState({})
+
+
     const DisplayFavoritedData = async () => {
         try { 
           const res = await fetch(`https://capstoneback.herokuapp.com/users/${window.localStorage.getItem("username")}`)
           const data = await res.json();
           setmyCryptoData(data)
-          console.log(JSON.stringify(data.favoritedPage, null, 4));
+          // console.log(JSON.stringify(data.favoritedPage, null, 4));
         } catch (error) {
           console.log(error);
         }
@@ -25,7 +28,31 @@ export default function Profile(props) {
         DisplayFavoritedData();
       },[]);
 
-      console.log(myCryptoData)
+
+      const getUserData = async () => {
+        try {
+          const response = await fetch(
+          `https://capstoneback.herokuapp.com/users/${window.localStorage.getItem(
+            "username"
+          )}`,
+          {
+            method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            }}
+          );
+          const data = await response.json();
+                setUserData(data)
+                console.log(data)
+        } catch(err) {
+          console.log(err)
+        }
+      }
+    
+        useEffect(()=> {
+            getUserData()
+            console.log(userData)
+        }, [])
 
     const DeleteUser = async () => {
         try { 
@@ -40,14 +67,50 @@ export default function Profile(props) {
           window.localStorage.clear();
           setLoggedIn(false);
           history.push('/')
-        //   console.log(JSON.stringify(data.favoritedPage, null, 4));
         } catch (error) {
           console.log(error);
         }
       }
-    //   useEffect(() => {
-    //     DisplayFavoritedData();
-    //   },[]);
+
+      const editUserInfo = async (e) => {
+
+        try{
+            const res = await fetch(`https://capstoneback.herokuapp.com/users/${myCryptoData._id}`,
+                {
+                    method: "PUT",
+                    headers: {
+                    "Content-Type": "application/json",
+                    // "Authorization" : "Bearer " + window.localStorage.getItem("token")
+                    },
+                    body: JSON.stringify(myCryptoData) 
+                  
+                }
+            );
+            const editedData = res.json();
+            // console.log(myCryptoData)
+            setmyCryptoData(myCryptoData)
+            console.log(myCryptoData)
+            // console.log()
+            
+        } catch (err){
+            console.error(err)
+        }
+    }
+    // useEffect(() => {
+    //   editUserInfo()
+    //   console.log(myCryptoData)
+    // })
+
+    const handleChange = (e) => {
+      setmyCryptoData({...myCryptoData, [e.target.name]: e.target.value})
+        // console.log(myCryptoData)
+    }
+
+    useEffect(() => {
+      setmyCryptoData(editInfo)
+      console.log(editInfo)
+    }, [editInfo])
+
 
 
     const handleLogout = () => {
@@ -57,21 +120,51 @@ export default function Profile(props) {
       };
 
 
-    return (
-        // <div></div>
+      return (
         <div className={styles.profile_holder}>
             <h1>Welcome {localStorage.username}</h1>
             {isLoggedIn ? <button onClick={handleLogout}>Log Out</button>: ""}
             <h3>You Favorite Crypto:</h3>
             {myCryptoData ? myCryptoData.favoritedPage.map((data) => {
-                console.log(data)
+                // console.log(data)
                 return (
                     <a href={data.url}><h2 className={styles.crypto_name}>{data.name}</h2></a>
                 )
             }): "You're not logged in"}
-            {isLoggedIn ? <button onClick={DeleteUser}>Delete Account</button>: ""}
+            {/* {isLoggedIn ? <button onClick={DeleteUser}>Delete Account</button>: ""} */}
+            {/* {<button onClick={() => setEditInfo(!editInfo)}>{editInfo? "Cancel" : "Edit"}</button>}
+            {editInfo ? <button onClick={DeleteUser}>Delete Account</button> : ""}  */}
+            <div>
+            {isLoggedIn ?
+            <div>
+                <div>
+                    {/* <button onClick={() => setEditInfo(!editInfo)}>{editInfo? "Cancel" : "Edit"}</button> */}
+                     {isLoggedIn ? <button onClick={DeleteUser}>Delete Account</button>: ""}
+                    {/* {editInfo ? <button onClick={DeleteUser}>Delete Account</button> : ""}  */}
+                </div>
+                {/* {editInfo ?  */}
+                    <div>
+                        <h2>Edit Account:</h2>
+                        {/* <form onSubmit={setEditInfo} onSubmit={editUserInfo}> */}
+                        <form onSubmit={() => {
+                          setEditInfo()
+                          editUserInfo()
+                        }}>
+                            User Name: <input type="text" name="username" onChange={handleChange} defaultValue={userData.username}/><br />
+                            First Name: <input type="text" name="firstname" onChange={handleChange} defaultValue={userData.firstname} /><br />
+                            Email: <input type="text" name="email" onChange={handleChange} defaultValue={userData.email}/><br />
+                            <input type="submit" />
+                        </form>
+                    </div>
+                    <div>
+                        <p>Username: {userData.username}</p>
+                        <p>First Name: {userData.firstname}</p>
+                        <p>Email: {userData.email}</p>
+                    </div>
+              </div>:""}
+                  </div> 
         </div>
-    )
+  )
 }
 
 
