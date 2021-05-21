@@ -9,7 +9,7 @@ export default function DisplayPage(props) {
     const [cryptoChartData, setCryptoChartData] = useState({prices: [[]]});
     const [savePage, setSavePage] = useState({
       name: `${props.match.params.CryptoId}`,
-      url: `http://localhost:3000/crypto/${props.match.params.CryptoId}`,
+      url: `https://cryptotalk.netlify.app/crypto/${props.match.params.CryptoId}`,
     });
     const [savedCryptoData, setSavedCryptoData] = useState("")
     const [getTime, setGetTime] = useState([])
