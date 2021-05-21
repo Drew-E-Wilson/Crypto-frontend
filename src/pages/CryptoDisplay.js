@@ -1,5 +1,4 @@
 import {useEffect, useState } from 'react';
-// import {Chart} from 'chart.js';
 import {Line, Bar} from 'react-chartjs-2';
 import styles from './CryptoDisplay.module.css';
 
@@ -74,7 +73,6 @@ export default function DisplayPage(props) {
     const day7 = getDate7().currentDate
   
     const sevenDays = [day1, day2, day3, day4, day5, day6, day7]
-    console.log(sevenDays)
     const getThatDates = []
   
 
@@ -100,8 +98,6 @@ export default function DisplayPage(props) {
       }
     )
 
-
-
     const url = `http://localhost:3000/crypto/${props.match.params.CryptoId}`;
   
     const checkFavoritedApi = async (e) => {
@@ -109,10 +105,7 @@ export default function DisplayPage(props) {
       try {
         const response = await fetch(`https://capstoneback.herokuapp.com/users/favoritedPages`);
         const data = await response.json();
-        
-        console.log(data);
         const apiID = data.filter(favorited => favorited.name === savePage.name)
-        console.log(apiID)
         apiID[0] ? getFavortiedIdFromFavoriteApi(e) : addFavoritedIdToDatabase(e)
       } catch (error) {
         console.log(error);
@@ -131,7 +124,7 @@ export default function DisplayPage(props) {
           headers: {
             "Content-Type": "application/json"
           },
-          ///////create a body thats an object containing the information needed to put at the backend
+
           body: JSON.stringify({
             name: savePage.name,
             url: savePage.url
@@ -139,16 +132,12 @@ export default function DisplayPage(props) {
           }
         );
         const data = await response.json();
-        console.log(data)
         await getFavortiedIdFromFavoriteApi(e)
   
       } catch (error) {
         console.error(error);
       }
     }
-    console.log(window.localStorage)
-
-
 
     const getFavortiedIdFromFavoriteApi = async (e) => {
       e.preventDefault()
@@ -161,11 +150,8 @@ export default function DisplayPage(props) {
           }
         });
         const data = await response.json();
-        
-        console.log(data);
         const apiID = data.filter(favorited => favorited.name === savePage.name)
         setSavedCryptoData(apiID[0]._id)
-        console.log(apiID)
       } catch (error) {
         console.log(error);
       }
@@ -185,14 +171,10 @@ export default function DisplayPage(props) {
           }
         );
         const data = await response.json();
-        console.log(data)
-  
       } catch (error) {
         console.error(error);
       }
     }
-    console.log(savedCryptoData)
-  
   
     const fetchCrypto = async () => {
       try {
@@ -217,8 +199,6 @@ export default function DisplayPage(props) {
     }, [savedCryptoData])
 
 
-
-
     //API data for Chart
     const ChartCryptoData = async () => {
         try { 
@@ -231,7 +211,6 @@ export default function DisplayPage(props) {
         })
           const data = await res.json();
           setCryptoChartData(data)
-          // console.log(JSON.stringify(data, null, 4));
         } catch (error) {
           console.log(error);
         }
@@ -253,7 +232,6 @@ export default function DisplayPage(props) {
       })
       const data = await res.json();
       setCryptoData(data)
-      // console.log(JSON.stringify(data, null, 4));
     } catch (error) {
       console.log(error);
     }
@@ -283,8 +261,7 @@ export default function DisplayPage(props) {
           data: getThatDates
         }]
       })
-      // console.log(JSON.stringify(data, null, 4));
-      // console.log(getTime)
+
     } catch (error) {
       console.log(error);
     }
@@ -293,16 +270,11 @@ export default function DisplayPage(props) {
       for ( let i = 0; i < sevenDays.length; i++) {
         callChartApi(sevenDays[i])
       }
-      console.log(getTime)
     }
  
   useEffect(() => {
     getChartDates();
   },[]);
-
-  useEffect(() => {
-    console.log(getTime)
-  }, [getTime])
 
 
   if (cryptoData === undefined) {

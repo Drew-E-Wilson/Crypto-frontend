@@ -1,19 +1,17 @@
-import React, {useEffect, useState, useRef, useContext} from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom';
 import HomePage from './pages/Home';
 import CryptoDisplay from './pages/CryptoDisplay';
 import Profile from './pages/Profile';
-import News from './pages/News';
-import Settings from './pages/Settings';
+// import News from './pages/News';
+// import Settings from './pages/Settings';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import './App.css';
 
 export const Datacontext = React.createContext()
 
-
 function App() {
-
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   return (

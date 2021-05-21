@@ -2,7 +2,6 @@ import {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './Register.module.css';
 
-
 export default function Register(){
     const history = useHistory()
     const [createForm, setCreateForm] = useState({
@@ -11,7 +10,6 @@ export default function Register(){
         email: "",
         password: ""
     })
-
 
     const createUser = async (e) => {
         e.preventDefault();
@@ -41,7 +39,6 @@ export default function Register(){
         setCreateForm({
           ...createForm, [e.target.id]: e.target.value
         })
-
       }
 
       return (

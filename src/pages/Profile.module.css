@@ -11,3 +11,20 @@
     font-size: 30px;
     border-radius: 5px;
 }
+
+
+.input_box {
+    margin: 10px;
+    display: block;
+}
+
+.form_holder {
+    border: 5px double rgb(34, 117, 82);
+    padding: 10px;
+    width: 180px;
+    margin: 20px;
+}
+
+.edit_name {
+    display: inline-block;
+}

@@ -18,7 +18,6 @@ export default function HomePage() {
             }
           })
           const data = await res.json();
-          // console.log(data)
           setHomeCryptoData(data)
         } catch (error) {
           console.log(error)
@@ -28,7 +27,6 @@ export default function HomePage() {
         homePageCryptoData();
       }, []);
 
-
   return (
     <div>
         <div className={styles.header_description}>
@@ -36,13 +34,12 @@ export default function HomePage() {
           <h3>Up to date information and stats on your favorite crypto currencies.</h3>
         </div>
         {homeCryptoData.map((crypto) => {
-          // console.log(crypto)
           return (
             <div className={styles.homepage_container} key={uuidv4()}>
                 <Link to={`crypto/${crypto.id.toLowerCase()}`}>
                   <div className={styles.main_data_container}>
                     <div className={styles.first_container}>
-                      <h2 className={styles.individual_stats}>{crypto.name}</h2>
+                      <h2 className={styles.individual_stats_name}>{crypto.name}</h2>
                       <h4 className={styles.individual_stats}>Price: ${crypto.current_price}</h4>
                       <h4 className={styles.individual_stats}>24hr high/low: ${crypto.high_24h}/${crypto.low_24h}</h4>
                       <h4 className={styles.individual_stats}>24hr: {crypto.market_cap_change_percentage_24h}%</h4>

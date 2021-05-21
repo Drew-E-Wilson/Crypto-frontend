@@ -1,7 +1,5 @@
-import React, {useEffect, useState, useRef, useContext} from 'react';
-import {Route, Link} from 'react-router-dom';
+import React, {useEffect, useState, useContext} from 'react';
 import { useHistory } from 'react-router-dom';
-import Register from './Register';
 import {Datacontext} from "../App"
 import styles from './Login.module.css'
 
@@ -25,7 +23,6 @@ export default function Login(props) {
         body: JSON.stringify({ ...loginForm })
       });
       const data = await response.json();
-      console.log(data)
       if (data.token) {
         window.localStorage.setItem("token", data.token);
         window.localStorage.setItem("username", data.username);
@@ -63,7 +60,6 @@ const routeChange = () =>{
     <div className="App">
       {isLoggedIn ? (
         <>
-            {/* <button onClick={handleLogout}>Log Out Here</button> */}
         </>
       ) : (
         <>
