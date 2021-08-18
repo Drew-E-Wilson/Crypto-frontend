@@ -15,6 +15,7 @@ This website shows the top 100 market cap cryptos with up-to-date information an
 - HTML
 - CSS
 - API
+- Chart.js
 ```
 <img src="https://imgur.com/mWZYC22.jpg"/>
 
