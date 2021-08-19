@@ -28,7 +28,7 @@ export default function Login(props) {
         window.localStorage.setItem("username", data.username);
         window.localStorage.setItem("firstname", data.firstname);
         setLoggedIn(true);
-        history.push('/')
+        history.push('/Crypto-frontend')
       }
     } catch (error) {
       console.error(error);
