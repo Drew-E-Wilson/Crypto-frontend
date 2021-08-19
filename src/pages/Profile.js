@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Datacontext } from "../App"
+import { Link } from 'react-router-dom';
 import styles from './Profile.module.css'
 
 export default function Profile(props) {
@@ -8,9 +9,9 @@ export default function Profile(props) {
   const history = useHistory();
   const { isLoggedIn, setLoggedIn } = useContext(Datacontext)
   const [editInfo, setEditInfo] = useState(false)
-  const [myCryptoData, setmyCryptoData] = useState({ favoritedPage: [] });
+  const [myCryptoData, setmyCryptoData] = useState({ favoritedPage: [{ "": { "": "" } }] });
   const [userData, setUserData] = useState({})
-
+  console.log(JSON.stringify(myCryptoData, null, 4))
   const DisplayFavoritedData = async () => {
     try {
       const res = await fetch(`https://crypto-talk.herokuapp.com/users/${window.localStorage.getItem("username")}`)
@@ -101,6 +102,11 @@ export default function Profile(props) {
     history.push('/')
   };
 
+  console.log(myCryptoData.favoritedPage)
+
+
+
+
   return (
     <div className={styles.profile_holder}>
       <h1>Welcome {localStorage.username}</h1>
@@ -108,7 +114,7 @@ export default function Profile(props) {
       <h3>You Favorite Crypto:</h3>
       {myCryptoData ? myCryptoData.favoritedPage.map((data) => {
         return (
-          <a href={data.url}><h2 className={styles.crypto_name}>{data.name}</h2></a>
+          <Link to={`crypto/${data.name}`} className={styles.crypto_name}>{data.name}</Link>
         )
       }) : "You're not logged in"}
       <div>
