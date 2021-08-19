@@ -8,7 +8,7 @@ export default function DisplayPage(props) {
   const [cryptoChartData, setCryptoChartData] = useState({ prices: [[]] });
   const [savePage, setSavePage] = useState({
     name: `${props.match.params.CryptoId}`,
-    url: `/crypto/${props.match.params.CryptoId.toLowercase()}`,
+    url: `/crypto/${props.match.params.CryptoId}`,
   });
   const [savedCryptoData, setSavedCryptoData] = useState("")
   const [getTime, setGetTime] = useState([])
@@ -98,12 +98,12 @@ export default function DisplayPage(props) {
     }
   )
 
-  const url = `/crypto/${props.match.params.CryptoId.toLowercase()}`;
+  const url = `/crypto/${props.match.params.CryptoId}`;
 
   const checkFavoritedApi = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch(`https://capstoneback.herokuapp.com/users/favoritedPages`);
+      const response = await fetch(`https://crypto-talk.herokuapp.com/users/favoritedPages`);
       const data = await response.json();
       const apiID = data.filter(favorited => favorited.name === savePage.name)
       apiID[0] ? getFavortiedIdFromFavoriteApi(e) : addFavoritedIdToDatabase(e)
@@ -118,7 +118,7 @@ export default function DisplayPage(props) {
 
     try {
       const response = await fetch(
-        `https://capstoneback.herokuapp.com/favoritedPages/`,
+        `https://crypto-talk.herokuapp.com/favoritedPages/`,
         {
           method: "POST",
           headers: {
@@ -142,7 +142,7 @@ export default function DisplayPage(props) {
   const getFavortiedIdFromFavoriteApi = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch(`https://capstoneback.herokuapp.com/favoritedPages/`, {
+      const response = await fetch(`https://crypto-talk.herokuapp.com/favoritedPages/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -161,7 +161,7 @@ export default function DisplayPage(props) {
 
     try {
       const response = await fetch(
-        `https://capstoneback.herokuapp.com/users/addFavoritedPage/${savedCryptoData}/${window.localStorage.getItem("username")}`,
+        `https://crypto-talk.herokuapp.com/users/addFavoritedPage/${savedCryptoData}/${window.localStorage.getItem("username")}`,
         {
           method: "POST",
           headers: {

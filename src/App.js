@@ -20,7 +20,7 @@ function App() {
             <h1 className="sitename">CryptoTalk</h1>
           </div>
           <div>
-            <Link to="/" className="links">Home</Link>
+            <Link to="/Crypto-frontend" className="links">Home</Link>
             <Link to="/profile" className="links">Profile</Link>
             <Link to="login" className="links">Login</Link>
           </div>
@@ -28,7 +28,7 @@ function App() {
         <main>
           <Switch>
             <div>
-              <Route path="/" exact component={HomePage} />
+              <Route path="/Crypto-frontend" exact component={HomePage} />
               <Route path="/crypto/:CryptoId" component={CryptoDisplay} />
               <Route path="/profile" exact component={Profile} />
               <Route path="/login" exact component={Login} />
