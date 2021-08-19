@@ -1,12 +1,12 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import {Datacontext} from "../App"
+import { Datacontext } from "../App"
 import styles from './Login.module.css'
 
 
 export default function Login(props) {
 
-  const {isLoggedIn, setLoggedIn} = useContext(Datacontext)
+  const { isLoggedIn, setLoggedIn } = useContext(Datacontext)
   const [loginForm, setLoginForm] = useState({
     username: "",
     password: "",
@@ -15,7 +15,7 @@ export default function Login(props) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://capstoneback.herokuapp.com/login", {
+      const response = await fetch("https://crypto-talk.herokuapp.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -52,7 +52,7 @@ export default function Login(props) {
   }, []);
 
 
-const routeChange = () =>{ 
+  const routeChange = () => {
     history.push('/register');
   }
 
@@ -90,7 +90,7 @@ const routeChange = () =>{
               />
             </label>
             <br></br>
-            <input type="submit" className={styles.submit_button}/>
+            <input type="submit" className={styles.submit_button} />
           </form>
         </>
       )}
