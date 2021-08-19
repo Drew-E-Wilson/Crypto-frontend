@@ -8,7 +8,7 @@ export default function DisplayPage(props) {
   const [cryptoChartData, setCryptoChartData] = useState({ prices: [[]] });
   const [savePage, setSavePage] = useState({
     name: `${props.match.params.CryptoId}`,
-    url: `https://crypto-talk.netlify.app/crypto/${props.match.params.CryptoId}`,
+    url: `https://drew-e-wilson.github.io/crypto/${props.match.params.CryptoId}`,
   });
   const [savedCryptoData, setSavedCryptoData] = useState("")
   const [getTime, setGetTime] = useState([])
@@ -98,7 +98,7 @@ export default function DisplayPage(props) {
     }
   )
 
-  const url = `https://crypto-talk.netlify.app/crypto/${props.match.params.CryptoId}`;
+  const url = `https://drew-e-wilson.github.io/crypto/${props.match.params.CryptoId}`;
 
   const checkFavoritedApi = async (e) => {
     e.preventDefault()
