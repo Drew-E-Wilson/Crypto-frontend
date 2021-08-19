@@ -102,10 +102,6 @@ export default function Profile(props) {
     history.push('/')
   };
 
-  console.log(myCryptoData.favoritedPage)
-
-
-
 
   return (
     <div className={styles.profile_holder}>
