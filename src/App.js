@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HashRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import HomePage from './pages/Home';
 import CryptoDisplay from './pages/CryptoDisplay';
 import Profile from './pages/Profile';
