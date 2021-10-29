@@ -21,7 +21,7 @@ This website shows the top 100 market cap cryptos with up-to-date information an
 
 ## `Getting Started:`
 
-Wonderfully easy site to use. Just click on this link [CryptoTalk](https://drew-e-wilson.github.io/Crypto-frontend/). Then look through the top 100 market cap cryptos and find up-to-date data. Find cryptos you're realy interested in? Create an account and save them for easy access next time you visit.
+Wonderfully easy site to use. Just click on this link [CryptoTalk](https://cryptotalk.netlify.app/). Then look through the top 100 market cap cryptos and find up-to-date data. Find cryptos you're realy interested in? Create an account and save them for easy access next time you visit.
 
 
 ## `Contribute:`
