@@ -28,7 +28,7 @@ function App() {
         <main>
           <Switch>
             <div>
-              <Route path="/" component={HomePage} />
+              <Route exact path="/" component={HomePage} />
               <Route path="/crypto/:CryptoId" component={CryptoDisplay} />
               <Route path="/profile" exact component={Profile} />
               <Route path="/login" exact component={Login} />
